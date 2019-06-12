@@ -1,0 +1,109 @@
+<mat-tab-group>
+  <mat-tab label="Замовлення на матеріали">
+    <table mat-table [dataSource]="materialOrders" class="mat-elevation-z8">
+      <ng-container matColumnDef="name">
+        <th mat-header-cell *matHeaderCellDef>Назва</th>
+        <td mat-cell *matCellDef="let materialOrder">{{materialOrder.material.name}}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="unit">
+        <th mat-header-cell *matHeaderCellDef>Од. виміру</th>
+        <td mat-cell *matCellDef="let materialOrder">{{materialOrder.material.unit}}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="amount">
+        <th mat-header-cell *matHeaderCellDef>Кількість</th>
+        <td mat-cell *matCellDef="let materialOrder">{{materialOrder.amount}}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="complete">
+        <th mat-header-cell *matHeaderCellDef>Видати</th>
+        <td mat-cell *matCellDef="let materialOrder">
+          <button mat-icon-button [disabled]="completeDisabled(materialOrder)" (click)="complete(materialOrder)">
+            <mat-icon>check</mat-icon>
+          </button>
+        </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="materialOrdersColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: materialOrdersColumns;"></tr>
+    </table>
+  </mat-tab>
+  <mat-tab label="Матеріали">
+    <table mat-table [dataSource]="warehouseMaterials" class="mat-elevation-z8">
+      <ng-container matColumnDef="name">
+        <th mat-header-cell *matHeaderCellDef>Назва</th>
+        <td mat-cell *matCellDef="let warehouseMaterial">{{warehouseMaterial.material.name}}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="unit">
+        <th mat-header-cell *matHeaderCellDef>Од. виміру</th>
+        <td mat-cell *matCellDef="let warehouseMaterial">{{warehouseMaterial.material.unit}}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="amount">
+        <th mat-header-cell *matHeaderCellDef>Кількість</th>
+        <td mat-cell *matCellDef="let warehouseMaterial">{{warehouseMaterial.amount}}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="delivery">
+        <th mat-header-cell *matHeaderCellDef>Поставка</th>
+        <td mat-cell *matCellDef="let warehouseMaterial">
+          <button mat-icon-button (click)="delivery(warehouseMaterial)">
+            <mat-icon>check</mat-icon>
+          </button>
+        </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="warehouseMaterialsColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: warehouseMaterialsColumns;"></tr>
+    </table>
+  </mat-tab>
+  <mat-tab label="Готова продукція">
+    <table mat-table [dataSource]="orders" class="mat-elevation-z8">
+      <ng-container matColumnDef="name">
+        <th mat-header-cell *matHeaderCellDef>Назва</th>
+        <td mat-cell *matCellDef="let order">{{order.name}}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="author">
+        <th mat-header-cell *matHeaderCellDef>Автор</th>
+        <td mat-cell *matCellDef="let order">{{order.author}}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="copies">
+        <th mat-header-cell *matHeaderCellDef>Тираж</th>
+        <td mat-cell *matCellDef="let order">{{order.copies}}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="manuscriptSheets">
+        <th mat-header-cell *matHeaderCellDef>Обсяг рукопису</th>
+        <td mat-cell *matCellDef="let order">{{order.manuscriptSheets}}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="subject">
+        <th mat-header-cell *matHeaderCellDef>Тематика</th>
+        <td mat-cell *matCellDef="let order">{{order.subject}}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="details">
+        <th mat-header-cell *matHeaderCellDef>Деталі</th>
+        <td mat-cell *matCellDef="let order">
+          <button mat-button (click)="showDetails(order.details)">Деталі</button>
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="dispatch">
+        <th mat-header-cell *matHeaderCellDef>Відправити замовнику</th>
+        <td mat-cell *matCellDef="let order">
+          <button mat-icon-button (click)="dispatch(order)">
+            <mat-icon>check</mat-icon>
+          </button>
+        </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="ordersColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: ordersColumns;"></tr>
+    </table>
+  </mat-tab>
+</mat-tab-group>

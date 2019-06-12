@@ -1,0 +1,20 @@
+<mat-form-field>
+  <input matInput [(ngModel)]="order.name" placeholder="Назва">
+</mat-form-field>
+<mat-form-field>
+  <input matInput [(ngModel)]="order.author" placeholder="Автор">
+</mat-form-field>
+<mat-form-field>
+  <input type="number" matInput [(ngModel)]="order.copies" placeholder="Тираж">
+</mat-form-field>
+<mat-form-field>
+  <input type="number" matInput [(ngModel)]="order.manuscriptSheets" placeholder="Обсяг рукопису">
+</mat-form-field>
+<mat-form-field>
+  <input matInput [(ngModel)]="order.subject" placeholder="Тематика">
+</mat-form-field>
+
+<div mat-dialog-actions>
+  <button mat-button mat-dialog-close>Скасувати</button>
+  <button mat-button [mat-dialog-close]="order" cdkFocusInitial>Зберегти</button>
+</div>

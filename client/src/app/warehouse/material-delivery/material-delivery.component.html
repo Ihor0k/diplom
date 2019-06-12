@@ -1,0 +1,10 @@
+<div class="mat-body">Назва: {{material.name}}</div>
+<div class="mat-body">Од. виміру: {{material.unit}}</div>
+<mat-form-field>
+  <input matInput [(ngModel)]="amount" placeholder="Кількість">
+</mat-form-field>
+
+<div mat-dialog-actions>
+  <button mat-button mat-dialog-close>Скасувати</button>
+  <button mat-button [mat-dialog-close]="amount" cdkFocusInitial>Зберегти</button>
+</div>

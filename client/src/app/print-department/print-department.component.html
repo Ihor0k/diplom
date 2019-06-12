@@ -1,0 +1,56 @@
+<table mat-table [dataSource]="orders" class="mat-elevation-z8">
+  <ng-container matColumnDef="name">
+    <th mat-header-cell *matHeaderCellDef>Назва</th>
+    <td mat-cell *matCellDef="let order">{{order.name}}</td>
+  </ng-container>
+
+  <ng-container matColumnDef="author">
+    <th mat-header-cell *matHeaderCellDef>Автор</th>
+    <td mat-cell *matCellDef="let order">{{order.author}}</td>
+  </ng-container>
+
+  <ng-container matColumnDef="copies">
+    <th mat-header-cell *matHeaderCellDef>Тираж</th>
+    <td mat-cell *matCellDef="let order">{{order.copies}}</td>
+  </ng-container>
+
+  <ng-container matColumnDef="manuscriptSheets">
+    <th mat-header-cell *matHeaderCellDef>Обсяг рукопису</th>
+    <td mat-cell *matCellDef="let order">{{order.manuscriptSheets}}</td>
+  </ng-container>
+
+  <ng-container matColumnDef="subject">
+    <th mat-header-cell *matHeaderCellDef>Тематика</th>
+    <td mat-cell *matCellDef="let order">{{order.subject}}</td>
+  </ng-container>
+
+  <ng-container matColumnDef="details">
+    <th mat-header-cell *matHeaderCellDef>Деталі</th>
+    <td mat-cell *matCellDef="let order">
+      <button mat-button (click)="showDetails(order.details)">Деталі</button>
+    </td>
+  </ng-container>
+
+  <ng-container matColumnDef="printer">
+    <th mat-header-cell *matHeaderCellDef>Друкар</th>
+    <td mat-cell *matCellDef="let order">
+      <button mat-icon-button [class.completed]="printerCompleted(order)" [disabled]="printerCompleted(order)"
+              (click)="printer(order)">
+        <mat-icon>check</mat-icon>
+      </button>
+    </td>
+  </ng-container>
+
+  <ng-container matColumnDef="bookbinder">
+    <th mat-header-cell *matHeaderCellDef>Палітурник</th>
+    <td mat-cell *matCellDef="let order">
+      <button mat-icon-button [class.completed]="bookbinderCompleted(order)" [disabled]="!printerCompleted(order)"
+              (click)="bookbinder(order)">
+        <mat-icon>check</mat-icon>
+      </button>
+    </td>
+  </ng-container>
+
+  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+</table>

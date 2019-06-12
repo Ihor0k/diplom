@@ -1,0 +1,16 @@
+<mat-form-field class="name">
+  <input type="text" placeholder="Матеріал" matInput [formControl]="materialNameControl" [matAutocomplete]="auto">
+  <mat-autocomplete (optionSelected)="onSelectMaterial($event.option.value)" #auto="matAutocomplete" [displayWith]="displayFn">
+    <mat-option *ngFor="let material of filteredMaterials | async" [value]="material">
+      {{material.name}}
+    </mat-option>
+  </mat-autocomplete>
+</mat-form-field>
+
+<mat-form-field class="unit">
+  <input type="text" matInput [formControl]="materialUnitControl" placeholder="Од. виміру">
+</mat-form-field>
+
+<mat-form-field class="amount">
+  <input type="number" matInput [(ngModel)]="materialOrder.amount" placeholder="Кількість">
+</mat-form-field>
